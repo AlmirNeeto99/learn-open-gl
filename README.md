@@ -14,9 +14,9 @@ This repository is a new begin, it's a second repository where I will remake the
 
 Every **Chapter** is a *branch*, example:
 
-- chapter-hello-window
-- chapter-hello-triangle
-- chapter-shaders
+- chapter/hello-window
+- chapter/hello-triangle
+- chapter/shaders
 
 And so on!
 
