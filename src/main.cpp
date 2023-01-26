@@ -36,6 +36,8 @@ int main() {
 
     glfwSetKeyCallback(window, keyCallback);
 
+    glViewport(0, 0, 800, 600);
+
     glClearColor(.8f, .3f, .7f, 1.f);
 
     while (!glfwWindowShouldClose(window)) {
