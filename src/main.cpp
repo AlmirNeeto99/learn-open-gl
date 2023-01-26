@@ -10,13 +10,14 @@ void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods
 }
 
 int main() {
-    // glfwInitHint();
-
     if (glfwInit() != GLFW_TRUE) {
         std::cout << "Failed to initialize GLFW" << std::endl;
         return -1;
     }
 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     GLFWwindow *window = glfwCreateWindow(800, 600, "Hello Window", NULL, NULL);
@@ -35,8 +36,13 @@ int main() {
 
     glfwSetKeyCallback(window, keyCallback);
 
+    glClearColor(.8f, .3f, .7f, 1.f);
+
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
+
+        glClear(GL_COLOR_BUFFER_BIT);
+
         glfwSwapBuffers(window);
     }
 
