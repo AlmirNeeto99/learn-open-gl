@@ -10,10 +10,14 @@ void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods
 }
 
 int main() {
+    // glfwInitHint();
+
     if (glfwInit() != GLFW_TRUE) {
         std::cout << "Failed to initialize GLFW" << std::endl;
         return -1;
     }
+
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     GLFWwindow *window = glfwCreateWindow(800, 600, "Hello Window", NULL, NULL);
 
@@ -37,6 +41,7 @@ int main() {
     }
 
     glfwDestroyWindow(window);
+    glfwTerminate();
 
     return 0;
 }
