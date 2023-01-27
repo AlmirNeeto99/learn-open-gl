@@ -23,7 +23,7 @@ int main() {
     GLFWwindow *window = glfwCreateWindow(800, 600, "Hello Window", NULL, NULL);
 
     if (!window) {
-        std::cout << "Faild to initialize Window" << std::endl;
+        std::cout << "Failed to initialize Window" << std::endl;
         return -1;
     }
 
@@ -38,7 +38,7 @@ int main() {
 
     glViewport(0, 0, 800, 600);
 
-    glClearColor(.8f, .3f, .7f, 1.f);
+    glClearColor(.9f, .3f, .1f, 1.f);
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
