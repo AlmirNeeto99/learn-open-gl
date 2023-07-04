@@ -20,13 +20,13 @@ char* File::getContent() {
 
     while (inf.good()) {
         std::getline(inf, line);
-        content << line;
+        content << line << '\n';
     }
 
     std::string fileContent = content.str();
     size_t length = fileContent.length();
 
-    char stringChar[length + 1] = {'\0'};
+    char* stringChar = new char[length + 1];
     fileContent.copy(stringChar, length);
 
     inf.close();
