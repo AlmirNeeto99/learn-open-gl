@@ -3,6 +3,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "headers/File.hpp"
+#include "headers/ShaderProgram.hpp"
+
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, GLFW_TRUE);
@@ -34,6 +37,21 @@ int main() {
         return -1;
     }
 
+    File vertex("../resources/vertex.vs");
+
+    char *v = vertex.getContent();
+
+    File frag("../resources/fragment.fs");
+
+    char *f = frag.getContent();
+
+    ShaderProgram program;
+
+    program.addShader(GL_VERTEX_SHADER, v);
+    program.addShader(GL_FRAGMENT_SHADER, f);
+
+    program.link();
+
     glfwSetKeyCallback(window, keyCallback);
 
     glViewport(0, 0, 800, 600);
@@ -46,6 +64,8 @@ int main() {
         glfwPollEvents();
         glfwSwapBuffers(window);
     }
+
+    program.destroy();
 
     glfwDestroyWindow(window);
     glfwTerminate();
