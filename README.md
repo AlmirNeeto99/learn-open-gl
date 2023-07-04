@@ -53,7 +53,7 @@ You'll build it using CMake.
 
 - Create a directory called `build`
 - Navigate into it
-- Call `cmake ..`
+- Call `cmake .. && make`
 - Run `./learn-gl`
 
 ---
