@@ -12,6 +12,11 @@ void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods
     }
 }
 
+GLfloat vertices[9] = {
+    .0f, .5f, .0f,
+    .5f, -.5f, .0f,
+    -.5f, -.5f, .0f};
+
 int main() {
     if (glfwInit() != GLFW_TRUE) {
         std::cout << "Failed to initialize GLFW" << std::endl;
@@ -52,16 +57,41 @@ int main() {
 
     program.link();
 
+    GLuint vbo;
+    glGenBuffers(1, &vbo);
+
+    GLuint vao;
+    glGenVertexArrays(1, &vao);
+
+    glBindVertexArray(vao);
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, GL_NONE);
+
+    glBindVertexArray(GL_NONE);
+
     glfwSetKeyCallback(window, keyCallback);
 
     glViewport(0, 0, 800, 600);
 
     glClearColor(.9f, .3f, .1f, 1.f);
 
+    program.use();
+
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
         glfwPollEvents();
+
+        glBindVertexArray(vao);
+
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
         glfwSwapBuffers(window);
     }
 
